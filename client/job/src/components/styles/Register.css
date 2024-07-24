@@ -1,0 +1,88 @@
+.regauthpage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.regcontainer {
+  background: #f5f3f3;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(34, 32, 32, 0.1);
+  max-width: 400px;
+  width: 100%;
+  height: 85vh;
+}
+
+.regheader {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.regheader h3 {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1.5rem;
+  color: #0d0d0d;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.reginputtag {
+  margin-bottom: 1rem;
+
+}
+
+.reginputtag label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 12px;
+}
+
+.reginputtag select,
+.reginputtag input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  height: 35px;
+}
+
+.reginputtag select:focus,
+.reginputtag input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #171718;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+a {
+  display: block;
+  text-align: center;
+  color: #2a2a2b;
+  text-decoration: none;
+  padding-left: 200px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
