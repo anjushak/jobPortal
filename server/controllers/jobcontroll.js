@@ -6,9 +6,9 @@ const usercollection = require("../model/userModel")
 
 const getAllJobs=async (req,res)=>{
     try{
-        const jobs=await jobcollection.find({expired:false})
+        const jobs=await jobcollection.find({})
         console.log();
-        return res.status(200).send({success:true,jobs})
+        return res.status(200).send({success:true,jobs:jobs})
 
     }
     catch(err){
@@ -22,12 +22,12 @@ const getAllJobs=async (req,res)=>{
 
 const postJob = async (req, res) => {
     try {
-      const { title, description, category, country, city, location, salary} = req.body;
+      const { title, description, category, country, city, location, salary, companylogo,companyName} = req.body;
   
       console.log("Received job data:", req.body);
   
      
-      if (!title || !description || !category || !country || !city || !location || !salary) {
+      if (!title || !description || !category || !country || !city || !location || !salary || !companylogo || !companyName) {
         return res.status(400).send("Please provide full job details");
       }
       console.log("Authenticated user:", req.user);
@@ -46,6 +46,8 @@ const postJob = async (req, res) => {
         location,
         salary:Number(salary),
         postedBy:req.user._id,
+        companylogo,
+        companyName
         
       };
   
@@ -91,31 +93,24 @@ const postJob = async (req, res) => {
   const singleJob=async (req,res)=>{
     try{
         const {id}=req.params;
+       
+     
+        if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+          return res.status(400).send("Invalid job ID");
+        }
         const singlejob=await jobcollection.findById(id);
         if(!singlejob){
           return res.status(400).send("job is not found")
         }
         return res.status(200).send({singlejob,success:true})
     }catch(err){
+      console.log(err.message)
       return res.status(500).send("internal server error")
+      
     }
   }
   
-  // const getJobsByEmployee=async (req,res)=>{
-  //   try{
-  //     const {id}=req.params;
-     
-  //     const jobs=await jobcollection.find({id})
-  //     if (!jobs) {
-  //       return res.status(404).send({ message: 'Job not found' });
-  //   }
-  //     return res.status(200).send({success:true,jobs})
-     
-  //   }catch(err){
-  //     console.log(err.message)
-  //     return res.status(500).send("internal server error")
-  //   }
-  // }
+ 
 
   const getJobByEmployee = async (req, res) => {
     try {
@@ -126,4 +121,39 @@ const postJob = async (req, res) => {
       return res.status(500).send("Internal server error");
     }
   };
-  module.exports={getAllJobs,postJob,updateJob,deleteJob,singleJob,getJobByEmployee}
+
+  const togglejob=async (req,res)=>{
+    try{
+    const {id}=req.params
+    const job=await jobcollection.findById(id)
+    if(!job){
+      return res.status(400).send({success:false,message:"job not found"})
+
+    }
+    job.disabled=!job.disabled;
+    await job.save();
+    return res.status(200).send({success:true,message:`job ${job.disabled ? 'disabled':'enabled'} successfully`})
+    }catch(err){
+      console.log(err.message)
+      return res.status(500).send("internal server error")
+    }
+  }
+  
+
+  const disablejob=async (req,res)=>{
+    try{
+      const { jobId } = req.params;
+      const job = await jobcollection.findByIdAndUpdate(jobId, { disabled: true }, { new: true });
+      if (!job) {
+        return res.status(404).send({ success: false, message: 'Job not found' });
+      }
+     return  res.status(200).send({ success: true, job });
+    }catch(err){
+      console.log(err.message);
+      return res.status(500).send("internal server error")
+      
+    }
+  }
+
+ 
+  module.exports={getAllJobs,postJob,updateJob,deleteJob,singleJob,getJobByEmployee,togglejob,disablejob}

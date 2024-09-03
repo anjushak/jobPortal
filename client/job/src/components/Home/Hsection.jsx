@@ -10,8 +10,8 @@ const Hsection = () => {
          <div className="title">
           <h1 className='titleheading'>Find a job that suits</h1>
           <h1 className='titleheading'>your interest and skills</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, natus?
+          <p style={{fontFamily:"serif"}}>
+          Discover the perfect job to elevate your career and achieve your dreams!
           </p>
          </div>
          <div className="banner">

@@ -59,13 +59,19 @@ const auth = async (req, res, next) => {
 
         const token = bearerToken.split(' ')[1];
         const decoded = jwt.verify(token, process.env.JWT_KEY);
+        
 
+      
         if (!decoded || !decoded.sub) {
             return res.status(401).send({ message: 'Invalid token' });
         }
 
         const user = await User.findById(decoded.sub);
-        
+        if (user.Blocked) {
+            return res.status(403).send({ error: 'Your account is blocked.' });
+          }
+      
+
         if (!user) {
             return res.status(401).send({ message: 'User not found' });
         }
@@ -77,5 +83,6 @@ const auth = async (req, res, next) => {
         res.status(500).send({ message: 'Internal server error' });
     }
 };
+
 
 module.exports={auth}

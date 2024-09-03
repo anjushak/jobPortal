@@ -7,7 +7,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MyContext } from '../..';
 import logo from "../assets/1.jpg"
 import "../styles/Nav.css"
-import { FaRegUserCircle } from 'react-icons/fa';
+import { AiOutlineLogout } from "react-icons/ai";
+import { CiUser } from "react-icons/ci";
 function Employenav() {
  
       const [show, setshow] = useState(false)
@@ -42,14 +43,10 @@ function Employenav() {
               HOME
               </Link>
              </li>
+             
              <li>
-              <Link to={'/job/getall'} onClick={()=>setshow(false)}>
-              ALL JOBS
-              </Link>
-             </li>
-             <li>
-              <Link to={`/application/${user?._id}`} onClick={()=>setshow(false)}>
-               VIEW APPLICATION
+              <Link to={`/employee/applications`} onClick={()=>setshow(false)}>
+               VIEW APPLICATIONS
              
               </Link>
              </li>
@@ -62,6 +59,11 @@ function Employenav() {
                 </Link>
 
                 </li>
+                <li>
+               <Link to={`/job/getall`} onClick={()=>setshow(false)}>
+                 VIEW ALL JOBS
+                </Link>
+               </li>
                <li>
                <Link to={`/job/me`} onClick={()=>setshow(false)}>
                  VIEW JOBS
@@ -69,7 +71,7 @@ function Employenav() {
                </li>
                <li>{!isAuthorized? <Link to={"/login"} >SIGN UP/SIGN IN</Link>:<Link to={`/profile/${user?._id}`} onClick={()=>setshow(false)}>
               
-              <FaRegUserCircle  style={{fontSize:"30px"}}/>
+              <CiUser  style={{fontSize:"30px"}}/>
               </Link>}
              
                </li>   
@@ -77,7 +79,7 @@ function Employenav() {
                
                
            
-          <button onClick={logout}><IoMdLogOut /></button>
+          <button ><AiOutlineLogout  onClick={logout} /></button>
             
              
         </ul>

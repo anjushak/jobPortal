@@ -14,8 +14,9 @@ const Postjob = () => {
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
   const [location, setLocation] = useState("");
+  const [companylogo, setlogo] = useState("");
   const [salary,setSalary] = useState("");
-
+  const [companyName, setCompanyName] = useState("");
   const {isAuthorized,user} = useContext(MyContext)
   const navigate=useNavigate();
   useEffect(() => {
@@ -26,26 +27,15 @@ const Postjob = () => {
 
   const handleJobpost=(e)=>{
     e.preventDefault();
-    // if(salaryType==="fixed salary"){
-    //       setSalaryFrom("");
-    //       setSalaryTo("");
-    // }else if(salaryType==="ranged salary"){
-    //     setFixedSalary("")
-    // }
+   
     if (!title || !description || !category || !country || !city || !location || !salary) {
       toast.error('Please fill out all required fields');
       return;
     }
-    // if (salaryType === 'Fixed Salary' && !fixedsalary) {
-    //   toast.error('Please provide a fixed salary');
-    //   return;
-    // }
-    // if (salaryType === 'Ranged Salary' && (!salaryFrom || !salaryTo)) {
-    //   toast.error('Please provide a salary range');
-    //   return;
+    
     
     const jobData = 
-    { title, description, category, country, city, location, salary } ;
+    { title, description, category, country, city, location, salary, companylogo,companyName } ;
     
     api.post('/employee/postjob',jobData,{
       withCredentials:true,
@@ -70,12 +60,13 @@ const Postjob = () => {
       <form onSubmit={handleJobpost}>
         <div className="postform">
           <input type="text" placeholder='title' name='title' value={title}    onChange={(e) => setTitle(e.target.value)}/>
+          
           <select name="category" id="" value={category}    onChange={(e) => setCategory(e.target.value)}>
             <option value="">Select Category</option>
             <option value="Graphic & Design">Graphic & Design</option>
             <option value="Mobile App Development">Mobile App Development</option>
             <option value="Frontend Web Development">Frontend Web Development</option>
-            <option value="MERN STACK Development">MERN STACK Development</option>
+            <option value="MERN STACK Development">Mern Stack Development</option>
             <option value="Account & Finance">Account & Finance</option>
             <option value=" Artificial Intelligence"> Artificial Intelligence</option>
             <option value=" MEAN STACK Development">  MEAN STACK Development</option>
@@ -87,6 +78,16 @@ const Postjob = () => {
         </div>
         <div className="postform">
           <input type="text"
+          placeholder='Company name'
+          name='company'
+          value={companyName}
+          onChange={(e) => setCompanyName(e.target.value)}
+           />
+         
+           
+        </div>
+        <div className="postform">
+          <input type="text"
           placeholder='Country'
           name='country'
           value={country}
@@ -95,6 +96,15 @@ const Postjob = () => {
            <input type="text"
            placeholder='City' name='city' value={city}    onChange={(e) => setCity(e.target.value)}/>
            
+        </div>
+        <div className="postform">
+          <input type="text"
+          placeholder='CompanyLogo URL '
+          name='logo'
+          value={companylogo}
+          onChange={(e) => setlogo(e.target.value)}
+           />
+         
         </div>
         <input type="text"
         placeholder='location'

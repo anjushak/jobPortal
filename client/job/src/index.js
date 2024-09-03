@@ -9,6 +9,7 @@ export const MyContext=createContext({isAuthorized:false})
 const AppAuth=()=>{
   const [isAuthorized,setAuthorized]=useState(false);
   const [user,setUser] = useState(null);
+  
   return(
     <MyContext.Provider value={{isAuthorized,setAuthorized,user,setUser}}>
         <App />

@@ -3,9 +3,8 @@ import "../styles/footer.css";
 import { FaFacebookF } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
-import { MyContext } from "../..";
+
 const Footer = () => {
-  const {isAuthorized} = useContext(MyContext)
 
   return (
     <div>
@@ -17,7 +16,7 @@ const Footer = () => {
             
           </div>
           <div className="footer-column">
-            <h4 style={{marginLeft:"190px"}}>Quick Links</h4>
+            <h4 >Quick Links</h4>
             <ul>
               <li>
                 <a href="/">Home</a>
@@ -34,7 +33,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="footer-column">
-            <h4 style={{marginLeft:"190px"}}>Follow Us</h4>
+            <h4 >Follow Us</h4>
             <ul className="social-links">
               <li>
                 <a

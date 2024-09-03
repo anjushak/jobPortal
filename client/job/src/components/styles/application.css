@@ -1,0 +1,489 @@
+.application{
+display: flex;
+flex-direction: column;
+justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+.appl-container{
+    background: white;
+    border-radius: 8px;
+    /* min-width: 1500px;
+    max-width: 1500px; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+
+}
+.appl-container h3{
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.appl-container form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 40px 20px;
+    gap: 25px;
+    margin: 0 auto;
+   
+    margin-top: 35px;
+}
+.appl-container form input{
+    border: none;
+  font-size: 16px;
+  border-bottom: 1px solid black;
+  padding: 10px;
+  margin-bottom: 15px;
+
+
+}
+.appl-container form textarea{
+    width: 100%;
+  /* height: 200px; */
+  font-size: 20px;
+  padding: 12px 4px;
+ 
+  resize: vertical;
+  height: 120px;
+}
+.file-input {
+    margin-bottom: 15px;
+  }
+  .file-input input{
+   height: 80px;
+  }
+ 
+.appl-container form input:focus,
+.appl-container form textarea:focus,
+ .appl-container form button:focus
+{
+  outline: none;
+  border-color: #007BFF;
+
+}
+.appl-container form button{
+    background-color: #7a8da0;
+    color: rgb(233, 249, 255);
+    font-size: 20px;
+    font-weight: 400;
+    border: none;
+    padding: 12px 30px;
+    text-decoration: none;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.appl-container form button:hover{
+    background-color: #184235;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+@media (max-width:1520px) {
+  .application{
+    margin-top: 50px;
+    min-width: 100%;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+.my-applications {
+  padding: 50px;
+  /* background-color: #f3f4f6; */
+  min-height: 100vh;
+ 
+}
+
+.my-container {
+  /* max-width: 1500px; */
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+ 
+}
+
+.my-container h1 {
+  margin-bottom: 20px;
+  /* text-align: center; */
+  font-size: 24px;
+  color: #35091d;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+
+}
+.my-applications{
+  width: 1;
+}
+.summary {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.summary-item {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summary-title {
+  font-size: 16px;
+  color: #333;
+}
+
+.summary-count {
+  font-size: 16px;
+  color: #333;
+}
+
+.applications-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 50px;
+}
+
+.applications-table th, .applications-table td {
+  padding: 12px;
+  border: none;
+  text-align: left;
+
+}
+
+.applications-table tr {
+  border-bottom: 1px solid #e0e0e0; 
+}
+
+.applications-table th {
+  border-bottom: 1px solid #e0e0e0;
+  font-weight: 500;
+  color: #7a8da0;
+  font-size: 15px;
+}
+
+.status {
+  text-transform: capitalize;
+  font-weight: 600;
+
+}
+
+.status.pending {
+  color: orange;
+}
+
+.status.rejected {
+  color: red;
+}
+
+.status.accepted {
+  color: green;
+}
+
+.view-detail-btn {
+  width: 140px;
+  color: black;
+  border: none;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #ffffff; 
+  border: 1px solid rgb(75, 115, 223);
+}
+
+@media (max-width: 1024px) {
+  .my-container {
+    padding: 15px;
+  }
+
+  .my-container h1 {
+    font-size: 22px;
+  }
+
+  .summary {
+    flex-direction: column; /* Stack summary items vertically */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .summary-item {
+    width: 100%; /* Full width for summary items */
+    margin-bottom: 15px;
+  }
+
+  .applications-table {
+    margin-top: 30px;
+  }
+
+  .applications-table th,
+  .applications-table td {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .my-container h1 {
+    font-size: 20px;
+    text-align: center; /* Center-align the title on smaller screens */
+  }
+
+  .applications-table th,
+  .applications-table td {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .view-detail-btn {
+    font-size: 13px;
+    padding: 8px 12px;
+    width: 120px; /* Adjust button width for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .my-applications {
+    padding: 30px;
+    margin-top: 50px;
+  }
+
+  .my-container h1 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .summary-item {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .applications-table th,
+  .applications-table td {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .view-detail-btn {
+    font-size: 12px;
+    width: 80px;
+
+  }
+}
+
+
+
+
+.detailcontainer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1e88e5;
+}
+
+.subheading {
+  font-size: 16px;
+  font-weight: medium;
+  color: #9e9e9e;
+}
+
+.card {
+  background: #ffffff;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1e88e5;
+}
+
+.card-details {
+  font-size: 16px;
+  color: #424242;
+  padding: 10px;
+  
+ 
+}
+
+.card-content {
+  font-size: 16px;
+  color: #424242;
+  white-space: pre-wrap; 
+  
+}
+
+.card-link {
+  font-size: 16px;
+  color: #1e88e5;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button {
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 0 5px;
+  transition: transform 0.2s;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.button-edit {
+  background: green;
+  color: #ffffff;
+}
+
+.button-delete {
+  background: #ef5350;
+  color: #ffffff;
+}
+
+.button-back {
+  background: #9e9e9e;
+  color: #ffffff;
+}
+@media(max-width:1520px){
+  .detailcontainer{
+    width: 100%;
+    margin-top: 200px;
+  }
+ .header{
+  margin-top: 50px;
+ }
+ .card{
+  margin: 10px 0;
+ }
+ 
+}
+
+@media (max-width: 768px) {
+  .detailcontainer {
+    padding: 15px;
+   margin-top: 100px;
+ width: 100%;
+  }
+
+  .header {
+    font-size: 20px;
+    margin-top: 50px;
+
+  }
+
+
+  .subheading {
+    font-size: 14px;
+    padding-top: 50px;
+    margin: 30 auto;
+
+  }
+
+  .card {
+    padding: 15px;
+    margin: 15px 0;
+  }
+
+  .card-title {
+    font-size: 18px;
+  }
+
+  .card-details,
+  .card-content {
+    font-size: 14px;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .detailcontainer {
+    padding: 10px;
+    width: 100%;
+    margin-top: 100px;
+  }
+
+  .header {
+    font-size: 18px;
+    margin-top: 50px;
+  }
+  
+  .subheading {
+    font-size: 12px;
+  }
+
+  .card {
+    padding: 10px;
+    margin: 10px 0;
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .card-details,
+  .card-content {
+    font-size: 12px;
+  }
+
+  .button {
+    font-size: 12px;
+    padding: 6px 12px;
+    margin: 5px 0; 
+  }
+}

@@ -1,15 +1,14 @@
 import React, { useContext, useState } from 'react'
-import logo from "../assets/1.jpg"
+// import logo from "../assets/1.jpg"
 import "../styles/Register.css"
 import { setToken } from '../../localstorage/Localdb'
 import { Link, useNavigate } from 'react-router-dom'
 import { MyContext } from '../..'
-import axios from 'axios'
+
 import toast from 'react-hot-toast'
 import { api } from '../../axios'
 const Register = () => {
-  const [validated, setValidated] = useState(false);
-  const {isAuthorized,setAuthorized,user} =useContext(MyContext)
+  const {isAuthorized,setAuthorized} =useContext(MyContext)
   const navigate=useNavigate()
   const [form, setform] = useState({name:"",email:"",phoneno:"",password:"",role:""})
   const updateform=(e)=>{

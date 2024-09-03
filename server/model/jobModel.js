@@ -37,22 +37,15 @@ const JobSchema=new Schema({
         maxLength:[9,"salary cannot exceed 9 digits"],
         required: [true, "Salary type is required"]
       },
-    // fixedsalary:{
-    //     type:Number,
-    //    minLength:[4,"salary must contain atleast 4 digits"],
-    //    maxLength:[9,"salary cannot exceed 9 digits"]
-    // },
-    // salaryFrom:{
-    //     type:Number,
-    //     minLength:[4,"salary must contain atleast 4 digits"],
-    //    maxLength:[9,"salary cannot exceed 9 digits"]
-    // },
-    // salaryTo:{
-    //     type:Number,
-    //     minLength:[4,"salary must contain atleast 4 digits"],
-    //    maxLength:[9,"salary cannot exceed 9 digits"]
-    // },
-    expired:{
+      companylogo:{
+        type:String,
+        required:true
+      },
+      companyName:{
+        type:String,
+        required:true
+      },
+    disabled:{
         type:Boolean,
         default:false
     },
@@ -61,6 +54,7 @@ const JobSchema=new Schema({
         default:Date.now,
     },
     postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  
 },{
     timestamps:true
 })

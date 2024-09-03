@@ -1,0 +1,86 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+  }
+  
+  .admin-dashboard {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .sidenav {
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    background-color: #343a40;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidenav .navlogo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .sidenav .navlogo img {
+    height: 60px;
+  }
+  
+  .sidenav .menu {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidenav .menu li {
+    width: 100%;
+  }
+  
+  .sidenav .menu a,
+  .sidenav .menu button {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 15px 20px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .sidenav .menu a:hover,
+  .sidenav .menu button:hover {
+    background-color: #495057;
+  }
+  
+  .main-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+  }
+  
+  .dashboard-widgets {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .widget {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1 1 200px;
+    max-width: 300px;
+  }
+  
+  .widget p {
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #495057;
+  }
+  

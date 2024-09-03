@@ -1,3 +1,4 @@
+const {mongoose}=require('mongoose')
 const {Schema,model}=require('mongoose')
 const validator=require('validator')
 const bcrypt=require('bcrypt')
@@ -27,12 +28,18 @@ const userSchema=new Schema({
      role: {
         type: String,
         required: [true, "Please select a role"],
-        enum: ["Job seeker", "Employer"],
+        enum: ["Job seeker", "Employer","Admin"],
       },
       createdAt: {
         type:Date,
         default:Date.now
-      }
+      },
+      savedJobs: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'jobs',
+        default: []
+      },
+      Blocked:{type:Boolean, default:false}
 },
 {
     timestamps:true

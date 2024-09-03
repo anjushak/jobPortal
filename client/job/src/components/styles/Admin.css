@@ -1,0 +1,106 @@
+.all-users {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  
+  }
+  
+  .users-container {
+  
+    margin: 0 auto;
+    margin-top: 50px;
+     justify-content: center;
+     /* display: flex; */
+    width: 1000px;
+  }
+  
+  .users-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+   
+    font-weight: bold;
+    text-align: center;
+    color: cadetblue;
+
+  }
+
+  .users-subtitle {
+    font-size: 15px;
+    margin-bottom: 10px;
+    display: block;
+    font-weight: bold;
+   
+    width: 150px;
+    height: 40px;
+    text-align: center;
+   padding-top: 10px;
+   margin-top: 20px;
+    margin-left: 20px;
+  }
+  .error-message {
+    color: red;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .no-users {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .users-list {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .users-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .users-table th,
+  .users-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .users-table th {
+    background-color: #f4f4f4;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .delete-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #e74c3c;
+  }
+  
+  .delete-btn:hover {
+    color: #c0392b;
+  }
+  
+  .access-denied {
+    text-align: center;
+    font-size: 24px;
+    color: #e74c3c;
+    margin-top: 50px;
+  }
+  
+  .block-btn, .unblock-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+  .block-btn {
+    color: #e74c3c; 
+  }
+  .unblock-btn {
+    color: #2ecc71;
+  }
+  
+  

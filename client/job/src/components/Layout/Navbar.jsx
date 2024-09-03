@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { MyContext } from '../..'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import logo from "../assets/1.jpg"
@@ -9,7 +9,9 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { removeToken } from '../../localstorage/Localdb'
 import { IoMdLogOut } from "react-icons/io";
 import { FaRegUserCircle } from "react-icons/fa";
+import { IoClose, IoMenu } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
+import { CiUser } from "react-icons/ci";
 
 const Navbar = () => {
   const [show, setshow] = useState(false)
@@ -47,13 +49,14 @@ const Navbar = () => {
               </Link>
              </li>
              <li>
+             <Link to={'/aboutus'} onClick={()=>setshow(false)}>
+              ABOUT US
+              </Link>
+             </li>
+             <li>
               <Link to={'/job/getall'} onClick={()=>setshow(false)}>
               ALL JOBS
               </Link>
-             </li>
-             
-             <li>
-              
              </li>
              <li>
               <Link to={'/applications/me'} onClick={()=>setshow(false)}>
@@ -64,7 +67,7 @@ const Navbar = () => {
 
              <li>{!isAuthorized? <Link to={"/login"} >SIGN UP/SIGN IN</Link>:<Link to={`/profile/${user?._id}`} onClick={()=>setshow(false)}>
               
-             <FaRegUserCircle  style={{fontSize:"30px"}}/>
+             <CiUser style={{fontSize:"30px",fontWeight:"200px"}}/>
              </Link>}
             
               </li>   
@@ -80,6 +83,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+
   )
 }
 
