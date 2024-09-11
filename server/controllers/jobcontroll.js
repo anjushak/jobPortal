@@ -155,5 +155,15 @@ const postJob = async (req, res) => {
     }
   }
 
+  const jobcount=async (req,res)=>{
+    try{
+          const jobscount=await jobcollection.countDocuments();
+          res.json({ count: jobscount });
+  
+    }catch(err){
+      console.log(err.message);
+      return res.status(500).send('internal server error')    
+    }
+  }
  
-  module.exports={getAllJobs,postJob,updateJob,deleteJob,singleJob,getJobByEmployee,togglejob,disablejob}
+  module.exports={getAllJobs,postJob,updateJob,deleteJob,singleJob,getJobByEmployee,togglejob,disablejob,jobcount}

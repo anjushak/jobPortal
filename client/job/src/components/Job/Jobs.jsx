@@ -9,8 +9,7 @@ import { CiSearch } from 'react-icons/ci';
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [savedJobs, setSavedJobs] = useState(new Set()); 
-  // const [searchTerm,setsearchTerm] = useState(" ")
+
   const [searchLetter, setSearchLetter] = useState("");
   useEffect(() => {
     const fetchJobs = async () => {
@@ -74,7 +73,7 @@ const Jobs = () => {
                   <p><FaLocationArrow /> {job.city}</p>
                   <p className="salary">Salary:  <span className="currency-symbol">₹</span> {job.salary} / month</p>
                 
-                  {/* <p className="deadline">Deadline: {new Date(job.deadline).toLocaleDateString()}</p> */}
+                 
                 </div>
               </div>
               <div className="jobdetails">

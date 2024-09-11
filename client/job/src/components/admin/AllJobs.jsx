@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { api } from '../../axios';
 import toast from 'react-hot-toast';
 import "../styles/Admin.css"
+import { MdDeleteForever } from 'react-icons/md';
 const AllJobs = () => {
     const [jobs,setjobs] = useState("")
     useEffect(() => {
@@ -24,6 +25,16 @@ const AllJobs = () => {
     
         fetchJobs();
       }, []);
+      const remove=(id)=>{
+        api.delete(`/employee/delete/${id}`).then((res)=>{
+          console.log(res);
+          const dele=jobs.filter(item=>item._id!==id)
+          setjobs(dele)
+        }).catch((err)=>{
+          console.log(err);
+          
+        })
+}
   return (
     <div>
       <div className='all-users'>
@@ -44,7 +55,7 @@ const AllJobs = () => {
                 <th>Category</th>
                 <th>City</th>
                 <th>Salary</th>
-                <th>Posted By</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -56,7 +67,7 @@ const AllJobs = () => {
                   <td>{job.category}</td>
                   <td>{job.city}</td>
                   <td>{job.salary}</td>
-                  <td>{job.postedBy.name}</td>
+                  <td><MdDeleteForever   onClick={()=>remove(job._id)}/></td>
                 </tr>
               ))}
             </tbody>

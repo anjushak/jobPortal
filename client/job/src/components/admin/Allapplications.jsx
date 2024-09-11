@@ -50,17 +50,7 @@ useEffect(() => {
                   <td>{disp.location}</td>
                   <td>{disp.status}</td>
                 
-                  {/* <td>
-                    {
-                      user.blocked ?(  <button className="unblock-btn" onClick={() => handleUnblock(user._id)}>
-                      <FiUnlock /> Unblock
-                    </button>):(
-                       <button className="block-btn" onClick={() => handleBlock(user._id)}>
-                       <FiLock /> Block
-                     </button>
-                    )
-                    }
-                  </td> */}
+                  
                 </tr>
               ))}
             </tbody>

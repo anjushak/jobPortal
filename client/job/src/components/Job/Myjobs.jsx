@@ -12,7 +12,6 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 const Myjobs = () => {
    
     const [jobs,setjobs] = useState([])
-    // const {isAuthorized,setAuthorized}=useContext(MyContext)
 
     useEffect(() => {
       const fetchJobs = async () => {

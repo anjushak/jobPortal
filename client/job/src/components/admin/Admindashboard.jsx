@@ -11,6 +11,7 @@ import { IoMdLogOut } from 'react-icons/io';
 import { removeToken } from '../../localstorage/Localdb';
 import toast from 'react-hot-toast';
 import { MyContext } from '../..';
+import { CiUser } from 'react-icons/ci';
 
 const drawerWidth = 240;
 
@@ -52,37 +53,41 @@ const Admindashboard = () => {
 
   return (
     <div>
-    {/* <List>
-      <ListItem button component={Link} to="/">
-        <ListItemIcon><DashboardIcon /></ListItemIcon>
-        <ListItemText primary="Dashboard" />
-      </ListItem>
-      <ListItem button component={Link} to="/admin/allusers">
-        <ListItemIcon><PeopleIcon /></ListItemIcon>
-        <ListItemText primary="Users" />
-      </ListItem>
-      <ListItem button component={Link} to="/admin/getall">
-        <ListItemIcon><WorkIcon  /></ListItemIcon>
-        <ListItemText primary="Jobs" />
-      </ListItem>
-      <ListItem button component={Link} to="/admin/applications">
-        <ListItemIcon><AssignmentIcon /></ListItemIcon>
-        <ListItemText primary="Applications" />
-      </ListItem>
-    </List> */}
-<AppBar position="static">
-        <Toolbar>
-          <IconButton color="black"  backgroundColor="black" aria-label="menu" onClick={toggleDrawer}>
-            <MenuIcon />Admin Panel
-          </IconButton>
+  
+      <AppBar position="static" style={{ background: "#1c727c" }}>
+        <Toolbar style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+            <IconButton color="inherit" aria-label="menu" onClick={toggleDrawer}>
+              <MenuIcon />
+
+            </IconButton>
+            <Typography variant="h6" style={{ marginLeft: '12px',fontWeight: 'bold', color: '#fff'  }}>
+              
+              Admin 
+            </Typography>
+          </div>
+           
+          
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+             
+              <ul className='nav-dropdown1' style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
+                <li onClick={logout} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+                  <IoMdLogOut size={30} style={{ marginRight: '8px' }} />
+                  <Typography>Logout</Typography>
+                </li>
+              </ul>
+            </div>
+          
           
         </Toolbar>
+       
       </AppBar>
 
 <StyledDrawer variant="temporary" open={drawerOpen} onClose={toggleDrawer} ModalProps={{keepMounted:true}}>
       <Toolbar />
       <div>
         <Typography variant="h6" style={{ padding: '16px',color:'green'}}>
+          
           Admin Panel
         </Typography>
       </div>

@@ -82,19 +82,21 @@ border-bottom: 1px solid gray;
     gap: 5vw;
 }
 .postform button{
+    
+}
+
+.postbutton{
     width: 100%;
     background: #2d5649;
-    font-size: 20px;
+    font-size: 15px;
     padding: 10px 30px;
-    margin-top: 50px;
+    margin-top: 30px;
     border: none;
     color: #fff;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: 2px;
 }
-
-
 @media (max-width:1520px){
     .jobpost-container{
         min-width: 100%;

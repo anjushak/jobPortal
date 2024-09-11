@@ -12,4 +12,5 @@ jobRoute.delete('/delete/:id', auth, jobController.deleteJob);
 jobRoute.get('/myjobs',auth,jobController.getJobByEmployee);
 jobRoute.patch('/admin/toglejob/:id',jobController.togglejob);
 jobRoute.patch('/admin/disable/:id',jobController.disablejob);
+jobRoute.get('/jobcount',jobController.jobcount);
 module.exports = jobRoute;

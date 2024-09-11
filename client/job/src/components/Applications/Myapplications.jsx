@@ -77,7 +77,7 @@ const Myapplications = () => {
                   <td>{application.jobId.title}</td>
                   <td>{application.jobId.salary}</td>
                   <td className={`status ${application.status.toLowerCase()}`}>{application.status}</td>
-                  {/* <td><button style={{border:"none",backgroundColor:"white"}} > <MdEdit style={{color:"black",fontSize:"20px"}} /></button></td> */}
+                 
                   <td><button style={{border:"none",backgroundColor:"white"}} onClick={()=>handleDelete(application._id)}><FiDelete style={{color:"black",fontSize:"20px"}}/></button></td>
                 </tr>
               ))}

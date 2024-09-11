@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import AdminNav from '../Layout/AdminNav'
+
 import Viewusers from '../admin/Viewusers'
 import Login from '../Auth/Login'
 import Register from '../Auth/Register'

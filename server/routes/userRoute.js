@@ -1,7 +1,6 @@
 const {Router}=require('express')
 const usercontroll=require("../controllers/usercontroll")
 const {auth}=require("../middileware/auth")
-const authorize=require("../middileware/authorize")
 const userroute=Router();
 userroute.post('/register',usercontroll.register);
 userroute.post('/login',usercontroll.login);
@@ -12,6 +11,9 @@ userroute.delete('/unsave/:jobid',auth,usercontroll.unSavejob);
 userroute.get('/admin/allusers',auth,usercontroll.getallusers);
 userroute.patch('/admin/block/:id',auth,usercontroll.blockuser);
 userroute.patch('/admin/unblock/:id',auth,usercontroll.unblockuser);
+userroute.get('/usercount',usercontroll.usercount)
+userroute.get('/ecount',usercontroll.employeecount)
+userroute.get('/jcount',usercontroll.jobseekercount);
 userroute.get('/getuser',auth,(req,res)=>{
     try{
         if(!req.user){

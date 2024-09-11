@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import "../styles/application.css"
 import { MyContext } from '../..'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { api } from '../../axios'
 import toast from 'react-hot-toast'
 const Application = () => {
@@ -13,6 +13,8 @@ const Application = () => {
    const [resume, setResume] = useState(null);
   const {isAuthorized, user} = useContext(MyContext)
 
+  const locations = useLocation();
+  const { job } = locations.state || {};
   const navigate=useNavigate();
  const handleFilechange=(e)=>{
   const resume=e.target.files[0];
@@ -20,6 +22,8 @@ const Application = () => {
   setResume(resume);
  };
  const {id:jobId}=useParams();
+ 
+
 
  const handleApplication=async (e)=>{
   e.preventDefault();
@@ -64,6 +68,12 @@ const Application = () => {
     <div className='application'>
         <div className='appl-container'>
            <h3>APPILCATION FORM</h3>
+           <p className='application-subtitle'>Apply for <span>{job.title}</span></p>
+           <div className='application-details'>
+  <p><strong>Company:</strong> <span className='detail-value'>{job.companyName}</span></p>
+  <p><strong>Location:</strong> <span className='detail-value'>{job.location}, {job.city}, {job.country}</span></p>
+  <p><strong>Salary:</strong> <span className='detail-value'>₹{job.salary} / month</span></p>
+</div>
            <form  onSubmit={handleApplication}>
             <input type="text" placeholder='Your Name'  value={name} name='name' onChange={(e)=>setName(e.target.value)}/>
             <input type="email" placeholder='Your Email'value={email} name='email' onChange={(e)=>setEmail(e.target.value)}/>

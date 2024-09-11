@@ -3,6 +3,7 @@ import { FaDownload, FaEnvelope, FaLocationArrow, FaPhone, FaUser } from 'react-
 
 const ViewmyApplication = () => {
     
+  
   return (
     <div className="detailcontainer">
     <div className="header">Application Details</div>

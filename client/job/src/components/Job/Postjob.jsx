@@ -115,7 +115,7 @@ const Postjob = () => {
               <input type="number" placeholder='salary' name='salary' value={salary} onChange={(e) =>setSalary(e.target.value)}/>
             </div>
             <textarea name="description" id="" rows={10} placeholder='Job Description' value={description}    onChange={(e) => setDescription(e.target.value)}></textarea>
-            <button type='submit'>Create Job</button>
+            <button type='submit' className='postbutton'>Create Job</button>
       </form>
      </div>
     </div>

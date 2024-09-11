@@ -1,88 +1,178 @@
-.regauthpage {
+
+.register-page {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f4f4f4;
+  background-color: #fff;
 }
 
-.regcontainer {
-  background: #f5f3f3;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(34, 32, 32, 0.1);
-  max-width: 400px;
+.register-container {
+  display: flex;
+  max-width: 1100px;
   width: 100%;
-  height: 85vh;
+  background-color: #fff;
+  overflow: hidden;
+  
 }
 
-.regheader {
-  text-align: center;
-  margin-bottom: 1.5rem;
+.register-image {
+  max-width: 100%;
+  height: auto;
+  flex: 1;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.regheader h3 {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 1.5rem;
-  color: #0d0d0d;
+.register-image img {
+  max-width: 70%;
+  height: auto;
+  object-fit: cover;
 }
 
-form {
+.register-form-container {
+  flex: 1;
+  padding: 80px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  max-width: 50%;
 }
 
-.reginputtag {
-  margin-bottom: 1rem;
-
-}
-
-.reginputtag label {
-  display: block;
+.register-form-container h1 {
+  margin-bottom: 10px;
+  font-size: 24px;
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.register-form-container p {
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.register-form .input-group {
+  margin-bottom: 20px;
+}
+
+.register-form .input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
   color: #333;
-  font-size: 12px;
 }
 
-.reginputtag select,
-.reginputtag input {
+.register-form .input-group input,
+.register-form .input-group select {
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  height: 35px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
-.reginputtag select:focus,
-.reginputtag input:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-button {
+.register-form .submit-button {
   width: 100%;
-  padding: 0.75rem;
-  background-color: #171718;
+  padding: 12px;
+  background-color: #000;
   color: #fff;
   border: none;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #0056b3;
+.register-form .submit-button:hover {
+  background-color: #333;
 }
 
-a {
-  display: block;
+.login-link {
+  margin-top: 20px;
   text-align: center;
-  color: #2a2a2b;
-  text-decoration: none;
-  padding-left: 200px;
 }
 
-a:hover {
-  text-decoration: underline;
+.login-link p {
+  font-size: 14px;
+}
+
+.login-link a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+
+@media (max-width: 768px) {
+  .register-container {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .register-form-container {
+    padding: 40px 20px;
+    max-width: 100%;
+  }
+
+  .register-image {
+    display: none;
+  }
+
+  .register-form-container h1 {
+    font-size: 22px;
+  }
+
+  .register-form-container p {
+    font-size: 14px;
+  }
+
+  .register-form .submit-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .login-link p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    width: 100%;
+    padding: 20px;
+    border-radius: 0; 
+  }
+
+  .register-form-container {
+    padding: 20px;
+    max-width: 100%; 
+  }
+
+  .register-form-container h1 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .register-form-container p {
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+
+  .register-form .input-group input,
+  .register-form .input-group select {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .register-form .submit-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .login-link p {
+    font-size: 12px;
+  }
 }

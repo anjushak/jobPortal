@@ -93,7 +93,7 @@ const Updatejob = () => {
               <input type="number" placeholder='salary' name='salary' value={jobData.salary} />
             </div>
             <textarea name="description" id="" rows={10} placeholder='Job Description' value={jobData.description}></textarea>
-            <button type='submit'>Update Job</button>
+            <button type='submit' className='postbutton'>Update Job</button>
       </form>
      </div>
     </div>

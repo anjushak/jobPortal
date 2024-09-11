@@ -1,105 +1,122 @@
-import React, { useContext, useState } from 'react'
-// import logo from "../assets/1.jpg"
-import "../styles/Register.css"
-import { setToken } from '../../localstorage/Localdb'
-import { Link, useNavigate } from 'react-router-dom'
-import { MyContext } from '../..'
+import React, { useContext, useState } from 'react';
+import { setToken } from '../../localstorage/Localdb';
+import { Link, useNavigate } from 'react-router-dom';
+import { MyContext } from '../..';
+import toast from 'react-hot-toast';
+import { api } from '../../axios';
+import banner from "../assets/job.webp"
+import "../styles/Register.css";  
 
-import toast from 'react-hot-toast'
-import { api } from '../../axios'
 const Register = () => {
-  const {isAuthorized,setAuthorized} =useContext(MyContext)
-  const navigate=useNavigate()
-  const [form, setform] = useState({name:"",email:"",phoneno:"",password:"",role:""})
-  const updateform=(e)=>{
-     setform({...form,[e.target.name]:e.target.value})
-  }
-  const handlesubmit=async (e)=>{
-     e.preventDefault();
-     api.post('/job/register',form,  {
+  const { isAuthorized, setAuthorized } = useContext(MyContext);
+  const navigate = useNavigate();
+  const [form, setform] = useState({ name: "", email: "", phoneno: "", password: "", role: "" });
+
+  const updateform = (e) => {
+    setform({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handlesubmit = async (e) => {
+    e.preventDefault();
+    api.post('/job/register', form, {
       headers: {
-        "Content-Type": "application/json",},
+        "Content-Type": "application/json",
+      },
       withCredentials: true,
-    }).then((res)=>{
+    }).then((res) => {
       console.log(res);
-      const data=res.data
-      setToken(data.token)
+      const data = res.data;
+      setToken(data.token);
       toast.success(data.message);
-      setform("");
+      setform({ name: "", email: "", phoneno: "", password: "", role: "" });
       setAuthorized(true);
-      navigate('/login')
-    }).catch(err=>{
-
+      navigate('/login');
+    }).catch(err => {
       console.log(err);
-
       toast.error('Registration failed. Please try again.');
-    })
-   
-  if(isAuthorized){
-      return 
-  }
-  }
+    });
+
+    if (isAuthorized) {
+      return;
+    }
+  };
+
   return (
-
-    <div>
-      
-      <section className='regauthpage  '>
-      <div className="regcontainer">
-        <div className="regheader">
-          {/* <img src={logo} alt="" height={"50px"} width={"50px"}/> */}
-          
-          <h3>Create a new account</h3>
-
+    <div className="register-page">
+      <div className="register-container">
+        <div className="register-image">
+          <img src={banner} alt="Register" className='rgstrimage' /> 
         </div>
-        <form  onChange={updateform}>
-          <div className="reginputtag">
-            <label>Register As</label>
-            <div>
-              <select defaultValue={form.role} name="role" >
-                <option value={""} style={{fontSize:"15px"}}>select role</option>
-                <option value={"Job seeker"} style={{fontSize:"15px"}}>Job seeker</option>
-                <option value="Employer" style={{fontSize:"15px"}}>Employer</option>
+        <div className="register-form-container">
+          <h1>Create Account</h1>
+          <p>Please fill in the details below to create a new account.</p>
+          <form onSubmit={handlesubmit} className="register-form">
+            <div className="input-group">
+              <label htmlFor="role">Register As</label>
+              <select defaultValue={form.role} name="role" id="role" required onChange={updateform}>
+                <option value="">Select role</option>
+                <option value="Job seeker">Job seeker</option>
+                <option value="Employer">Employer</option>
+                
               </select>
             </div>
+            <div className="input-group">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                value={form.name}
+                onChange={updateform}
+                required
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="phoneno">Phone Number</label>
+              <input
+                type="tel"
+                id="phoneno"
+                name="phoneno"
+                placeholder="Enter your phone number"
+                value={form.phoneno}
+                onChange={updateform}
+                required
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                value={form.email}
+                onChange={updateform}
+                required
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                value={form.password}
+                onChange={updateform}
+                required
+              />
+            </div>
+            <button type="submit" className="submit-button">Register</button>
+          </form>
+          <div className="login-link">
+            <p>Already have an account? <Link to="/login">Sign in</Link></p>
           </div>
-          <div className="reginputtag">
-              <label>Name</label>
-              <div>
-                <input type="text" placeholder='name' defaultValue={form.name} name='name'/>
-                
-              </div>
-            </div>
-            <div className="reginputtag">
-              <label>Phone number</label>
-              <div>
-                <input type="number" placeholder='12345678'defaultValue={form.phoneno} name='phoneno'/>
-               
-              </div>
-            </div>
-            <div className="reginputtag">
-              <label>Email Address</label>
-              <div>
-                <input type="text" defaultValue={form.email} name='email' placeholder='abc@gmail.com'/>
-              
-              </div>
-            </div>
-            <div className="reginputtag">
-              <label>Password</label>
-              <div>
-                <input type="password" placeholder='password' defaultValue={form.password} name='password'/>
-               
-              </div>
-            </div>
-           <button type='submit' onClick={handlesubmit}>Register</button>
-          <Link to={"/login"}>Sign in</Link>
-        </form>
         </div>
-       </section>
-    </div>   
-  
-
-   
-  )
+      </div>
+    </div>
+  );
 }
 
-export default Register
+export default Register;

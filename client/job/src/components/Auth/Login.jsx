@@ -6,6 +6,8 @@ import "../styles/Login.css"
 import { api } from '../../axios';
 import { setToken } from '../../localstorage/Localdb';
 import { MyContext } from '../..';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import banner from "../assets/job.webp"
 
 const Login = () => {
   const {setAuthorized,setUser} = useContext(MyContext)
@@ -42,36 +44,63 @@ const Login = () => {
       }
     })
   }
-
+  const [ showPassword, setShowPassword ] = useState(false);
   return (
 
-    <section className='authpage'>
-
-       <div className='logincontainer'>
-        <div className='loginheader'>
-         
-        <img src={logo} alt="" />
-        <h3>Sign in</h3>
+    <section className='login-page'>
+    <div className='login-split'>
+      <div className='login-image-container'>
+        <img src={banner} alt="Welcome" className='login-image' />
+      </div>
+      <div className='login-form-container'>
+        <div className='login-header'>
+          <h2>Welcome back!</h2>
+          <p>Please enter your details</p>
         </div>
-        <form onChange={handleUpdate}>
-        
-          <div className="inputtag">
-            <label >Email Address</label>
-            <div>
-              <input type="text" placeholder='enter email' defaultValue={login.email} name='email'/>
+        <form onChange={handleUpdate} onSubmit={loginSubmit}>
+          <div className="input-tag">
+            <label>Email</label>
+            <input 
+              type="text" 
+              placeholder='Enter email' 
+              value={login.email} 
+              name='email'
+              required 
+            />
+          </div>
+          <div className="input-tag">
+            <label>Password</label>
+            <div className='password-container'>
+              <input 
+                type={showPassword ? "text" : "password"} 
+                placeholder='Enter password' 
+                value={login.password} 
+                name='password'
+                required 
+              />
+              <span 
+                className='password-toggle' 
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
             </div>
           </div>
-          <div className="inputtag">
-            <label >Password</label>
-            <div>
-              <input type="password" placeholder='enter password'  defaultValue={login.password} name='password'/>
-            </div>
+          <div className="form-actions">
+            <label className='remember-me'>
+              <input type="checkbox" />
+              Remember for 30 days
+            </label>
+            <Link to="/forgot-password" className='forgot-password'>Forgot password?</Link>
           </div>
-          <button type='submit' onClick={loginSubmit}>Login</button>
-          <Link to={"/register"}>Register Now</Link>
+          <button type='submit' className='login-button'>Log In</button>
+         
+          <p className='register-text'>Don't have an account? <Link to="/register" className='register-link'>Sign up</Link></p>
         </form>
-       </div>
-    </section>
+      </div>
+    </div>
+  </section>
+    
    
   )
 }

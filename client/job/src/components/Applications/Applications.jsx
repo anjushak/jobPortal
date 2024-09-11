@@ -31,9 +31,7 @@ const Applications = () => {
      fetchApplications();
   }, [isAuthorized])
   
-  // const getResumeUrl = (url) => {
-  //   return `http://localhost:4000/${url}`;
-  // };
+ 
 
 
   const viewDetails = (applicationId) => {
@@ -58,7 +56,6 @@ const Applications = () => {
                  <th>Email</th>
                  <th>Phone No</th>
                  <th>Location</th>
-                 {/* <th>Cover Letter</th> */}
                  <th>Action</th>
                 
 

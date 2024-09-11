@@ -13,11 +13,7 @@ const Jobdetails = () => {
   const { user } = useContext(MyContext);
 
   useEffect(() => {
-    // if (!isAuthorized) {
-    //   navigate('/login');-
-    //   return;
-    // }
-
+   
     const fetchJob = async () => {
       try {
         const res = await api.get(`/employee/singlejob/${id}`, { withCredentials: true });
@@ -81,7 +77,7 @@ const Jobdetails = () => {
         </div>
       </div>
       {user && user.role !== "Employer" ? (
-        applied ?( <button className='apply-button' disabled>Already applied</button>):(  <Link to={`/application/${job._id}`} className='apply-button'>Apply For Job <GoArrowRight  /></Link>)
+        applied ?( <button className='apply-button' disabled>Already applied</button>):(  <Link  to={`/application/${job._id}`} state={{ job }} className='apply-button'>Apply For Job <GoArrowRight  /></Link>)
            
       ):(<Link to={`/updatejob/${job._id}`} className='apply-button'>Update Job</Link>)}
        

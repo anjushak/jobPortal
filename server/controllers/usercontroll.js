@@ -56,9 +56,9 @@ const login=async (req,res)=>{
 
    const ispassword=await bcrypt.compare(password,newuser.password);
    console.log('Password valid:', ispassword);
-//    if (!ispassword) {
-//     return res.status(400).send('Invalid email or password');
-// }
+   if (!ispassword) {
+    return res.status(400).send('Invalid email or password');
+}
 
   
     const token=jwt.sign({sub:newuser},process.env.JWT_KEY,{expiresIn:"7d"})
@@ -199,4 +199,38 @@ const unblockuser=async (req,res)=>{
     
   }
 }
-module.exports={register,login,view,saveJob,viewSavejob,unSavejob,getallusers,blockuser,unblockuser}
+
+
+ 
+const usercount=async (req,res)=>{
+  try{
+        const userrcount=await usercollection.countDocuments({role:{ $ne: 'Admin'}});
+        res.json({ count: userrcount });
+
+  }catch(err){
+    console.log(err.message);
+    return res.status(500).send('internal server error')    
+  }
+}
+
+const employeecount=async (req,res)=>{
+  try{
+        const ecount=await usercollection.countDocuments({role:'Employer'});
+        res.json({ count: ecount });
+
+  }catch(err){
+    console.log(err.message);
+    return res.status(500).send('internal server error')    
+  }
+}
+const jobseekercount=async (req,res)=>{
+  try{
+        const jcount=await usercollection.countDocuments({role:'Job seeker'})
+        res.json({count:jcount})
+  }catch(err){
+    console.log(err.message);
+    return res.status(500).send('internal server error')
+    
+  }
+}
+module.exports={register,login,view,saveJob,viewSavejob,unSavejob,getallusers,blockuser,unblockuser,usercount,employeecount,jobseekercount}
