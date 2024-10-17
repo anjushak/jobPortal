@@ -1,4 +1,4 @@
-![1](https://github.com/user-attachments/assets/140a4fc2-13ff-462b-a96a-32741ff9f55a)# HirePulse Job Portal  🧑‍💼💼
+![1]# HirePulse Job Portal  🧑‍💼💼
 
 ![Job Portal Logo](C:\Users\hp\Documents\WEB DEV\JOB PORTAL\client\job\src\components\assets\1.jpg) <!-- Add your logo image link here -->
 
