@@ -1,65 +1,105 @@
+
 .navcontainer {
   display: flex;
   justify-content: space-between;
-  padding: 0px 10px;
-  background: #e8e6e6;
-  height: 90px;
-  max-width: 1550px;
-  width: 100%;
   align-items: center;
-}
-
-.navlogo {
-  width: 120px;
-  height: 120px;
+  padding: 12px 10px;
+  background-color: #ffffff; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); 
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+ width: 100%;
+ box-sizing: border-box;
+ 
 }
 
 .navlogo img {
-  height: 70px;
-  width: 70px;
-  background-color: black;
+  height: 50px;
+  width: auto;
+  transition: transform 0.2s ease-in-out;
   border-radius: 50px;
-  margin-top: 25px;
 }
+
+.navlogo img:hover {
+  transform: scale(1.05);
+}
+
 
 .menu {
-  display: flex;
-  align-items: center;
   list-style: none;
-  padding: 0;
+  display: flex;
+  gap: 40px;
+  align-items: center;
   margin: 0;
 }
-
 .menu li {
   margin: 0 10px;
 }
-
 .menu li a {
-
-  color: #18191c;
+  color: #333; 
+  font-size: 16px;
+  font-weight: 500;
   text-decoration: none;
-  font-weight: 300;
-  font-size: 12px;
+  transition: color 0.3s ease-in-out;
+  padding: 0px;
   position: relative;
-  cursor: pointer;
-  padding: 0;
 }
 
-.menu button {
-  margin-top: 5px;
-  height: fit-content;
-  padding: 10px;
-  border: none;
-  
-  color: #18191c;
-  font-size: 25px;
-  font-weight: 300;
-  border-radius: 50px;
-  width: 50px;
-  align-items: center;
-  background-color: transparent;
-  transition: background 0.3s, color 0.3s, border 0.3s;
+.menu li a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #3498db;
+  transition: width 0.3s ease-in-out;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+}
 
+.menu li a:hover::after {
+  width: 100%;
+}
+
+.menu li a:hover {
+  color: #3498db; 
+}
+
+
+.hamburger {
+  display: none;
+  color: #333;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+
+button {
+ 
+  border: none;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.user-icon {
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.user-icon:hover {
+  color: #3498db;
 }
 
 .hamburger {
@@ -109,18 +149,21 @@
     color: #184235;
     font-size: 15px;
     display: block;
-    padding: 15px 0;
+    padding: 10px 0;
   }
 
   .menu button {
-    width: 60%;
+    width: 30%;
+    height: 60px;
     background: transparent; 
     color: black;
-    margin: 20px auto;
+    
     font-size: 30px;
     text-align: center;
     display: block;
+    
   }
+  
 
   .menu button:hover {
     background: #18191c;
@@ -128,62 +171,158 @@
   }
 }
 
+
+
+
+
+
+
 .profile-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px;
-  background: linear-gradient(to right, #f0f4f8, #e2e8f0);
-  min-height: 100vh;
+  height: 100vh;
+  padding: 20px;
 }
 
+
 .profile-container {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  max-width: 550px;
   width: 100%;
-  max-width: 600px;
-  background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 }
 
 .profile-container h2 {
-  margin-bottom: 20px;
-  font-size: 2em;
-  font-weight: 600;
-  color: #2d3748;
-  text-align: center;
-  margin-left: 0 auto;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #3a3a3a;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.profile-title::after {
+  content: '';
+  width: 60px;
+  height: 4px;
+  background-color: #74ebd5;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+}
+
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
 }
 
 .profile-info {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  display: grid;
+  gap: 25px;
 }
 
-.profile-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.profile-item:last-child {
-  border-bottom: none;
-}
-
-.label {
+.profile-item label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #555;
   font-weight: 500;
-  color: #4a5568;
-}
-
-.value {
-  color: #2d3748;
 }
 
 .profile-item input {
-  border-radius: 8px;
-  width: 300px;
-  height: 40px;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
   border: none;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  color: #333;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-item input:focus {
+  outline: none;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(116, 235, 213, 0.4);
+}
+
+
+.no-data {
+  font-size: 1.3rem;
+  color: #888;
+}
+
+
+.profile-item input:hover {
+  background-color: #eaeaea;
+}
+
+button {
+  padding: 12px 20px;
+  background-color: #74ebd5;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #4cc2b4;
+  transform: translateY(-2px);
+}
+.save-btn{
+  margin-top: 20px;
+  color: black;
+  background-color: white;
+  border: 1px solid;
+}
+.edit-btn{
+  margin-top: 20px;
+  color: black;
+  background-color: #eaeaea;
+  border: 1px solid;
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 30px;
+  }
+
+  .profile-title {
+    font-size: 2rem;
+  }
+
+  .profile-item input {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-container {
+    padding: 25px;
+  }
+
+  .profile-title {
+    font-size: 1.8rem;
+  }
+
+  .profile-item input {
+    padding: 8px;
+  }
 }

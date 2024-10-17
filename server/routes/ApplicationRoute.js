@@ -24,5 +24,6 @@ const storage = multer.diskStorage({
   myroute.post('/employer/accept/:id',auth,appcontroll.acceptapplication);
   myroute.post('/employer/reject/:id',auth,appcontroll.rejectapplication);
   myroute.get('/admin/getall',auth,appcontroll.getAllapplication);
+  myroute.get('/applcount',appcontroll.applicationcount);
   
 module.exports=myroute

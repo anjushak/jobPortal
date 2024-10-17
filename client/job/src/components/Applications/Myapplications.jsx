@@ -1,17 +1,35 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { MyContext } from '../..'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { api } from '../../axios'
 import "../styles/application.css"
 import { FiDelete, FiEye } from 'react-icons/fi';
 import { MdEdit } from 'react-icons/md'
-
-
+import { FcViewDetails } from "react-icons/fc";
+import Modal from 'react-modal';
+const customModalStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    padding: '20px',
+    textAlign: 'center',
+    borderRadius: '8px',
+    width: '300px'
+  },
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  }
+};
 const Myapplications = () => {
   const {user} = useContext(MyContext)
   const [applications, setApplications] = useState([])
-  
+  const [selectedApplicationId, setSelectedApplicationId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const {isAuthorized} = useContext(MyContext)
 
   const navigate=useNavigate();
@@ -22,7 +40,7 @@ const Myapplications = () => {
               const res=await api.get('/applicant/jobseeker/getall',{withCredentials:true}).then((res)=>{
                 console.log(res.data.applications);
                 
-                setApplications(res.data.applications);
+                setApplications(res.data.applications.reverse());
             
                 
 
@@ -35,7 +53,19 @@ const Myapplications = () => {
        }
        fetchApplication();
   }, [isAuthorized]);
-  const handleDelete = async (applicationId) => {
+  const openDeleteModal = (applicationId) => {
+    setSelectedApplicationId(applicationId);
+    setIsModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setIsModalOpen(false);
+    setSelectedApplicationId(null);
+  };
+  const handleDelete = async (applicationId,index) => {
+    const isConfirmed = window.confirm('Are you sure you want to delete this application?');
+
+    if (!isConfirmed) return;
     try {
       const response= await api.delete(`/applicant/jobseeker/delete/${applicationId}`, { withCredentials: true });
       console.log('Delete response:', response);
@@ -44,6 +74,8 @@ const Myapplications = () => {
     } catch (err) {
       toast.error('Error occurred while deleting the application');
       console.error(err.message);
+    }finally {
+      closeDeleteModal();
     }
   };
   
@@ -71,14 +103,14 @@ const Myapplications = () => {
             </thead>
             <tbody>
               {applications.map((application) => (
-                <tr key={application._id}>
+                <tr key={application?._id}>
                   <td>{new Date(application.appliedOn).toLocaleDateString()}</td>
-                  <td>{application.jobId.companyName}</td>
-                  <td>{application.jobId.title}</td>
-                  <td>{application.jobId.salary}</td>
+                  <td>{application.jobId?.companyName}</td>
+                  <td>{application.jobId?.title} <Link to={`/job/${application.jobId?._id}`}><FcViewDetails /></Link></td>  
+                  <td>{application.jobId?.salary}</td>
                   <td className={`status ${application.status.toLowerCase()}`}>{application.status}</td>
                  
-                  <td><button style={{border:"none",backgroundColor:"white"}} onClick={()=>handleDelete(application._id)}><FiDelete style={{color:"black",fontSize:"20px"}}/></button></td>
+                  <td><button style={{border:"none",backgroundColor:"white"}} onClick={()=>{handleDelete(application._id);  openDeleteModal(application._id)}}><FiDelete style={{color:"black",fontSize:"20px"}}/></button></td>
                 </tr>
               ))}
             </tbody>

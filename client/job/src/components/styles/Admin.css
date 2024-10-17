@@ -57,6 +57,9 @@
     width: 100%;
     border-collapse: collapse;
   }
+  .tablewrapper{
+    overflow-x: auto;
+  }
   
   .users-table th,
   .users-table td {
@@ -159,4 +162,60 @@
 
 .info-btn:hover {
   background-color: rgba(255, 255, 255, 0.4);
+}
+@media(max-width:1024px){
+  .tablewrapper{
+    overflow-x: scroll;
+    width: 100%;
+  }
+  .users-table{
+    width: 100%;
+  }
+}
+@media(max-width:768px){
+  .users-container{
+    width: 100%;
+    padding: 0 10px;
+  }
+  .users-table th,.users-table td{
+    padding: 10px;
+    
+  }
+  .tablewrapper{
+    overflow-x: scroll;
+  }
+  .panelcontainer {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .dashboard-title {
+    font-size: 30px;
+  }
+}
+@media(max-width:600px){
+  .users-table{
+    width:100%;
+  }
+  .tablewrapper{
+     overflow-x: scroll;
+  }
+}
+@media (max-width: 480px) {
+  .users-title {
+    font-size: 20px;
+  }
+
+  .panel h2 {
+    font-size: 18px;
+  }
+
+  .panel p {
+    font-size: 13px;
+  }
+
+  .info-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
 }

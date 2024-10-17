@@ -54,6 +54,15 @@ const JobSchema=new Schema({
         default:Date.now,
     },
     postedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    deadline:{
+        type:Date,
+        required:true
+    },
+    adminDisabled: { 
+        type: Boolean,
+        default: false
+    },
+
   
 },{
     timestamps:true

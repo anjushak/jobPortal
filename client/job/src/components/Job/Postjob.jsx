@@ -17,6 +17,7 @@ const Postjob = () => {
   const [companylogo, setlogo] = useState("");
   const [salary,setSalary] = useState("");
   const [companyName, setCompanyName] = useState("");
+  const [deadline, setdeadline] = useState("");
   const {isAuthorized,user} = useContext(MyContext)
   const navigate=useNavigate();
   useEffect(() => {
@@ -28,14 +29,14 @@ const Postjob = () => {
   const handleJobpost=(e)=>{
     e.preventDefault();
    
-    if (!title || !description || !category || !country || !city || !location || !salary) {
+    if (!title || !description || !category || !country || !city || !location || !salary || !deadline) {
       toast.error('Please fill out all required fields');
       return;
     }
     
     
     const jobData = 
-    { title, description, category, country, city, location, salary, companylogo,companyName } ;
+    { title, description, category, country, city, location, salary, companylogo,companyName,deadline } ;
     
     api.post('/employee/postjob',jobData,{
       withCredentials:true,
@@ -113,8 +114,17 @@ const Postjob = () => {
             <div className="postform">
              
               <input type="number" placeholder='salary' name='salary' value={salary} onChange={(e) =>setSalary(e.target.value)}/>
+
             </div>
+           
             <textarea name="description" id="" rows={10} placeholder='Job Description' value={description}    onChange={(e) => setDescription(e.target.value)}></textarea>
+            <div className="postform">
+            <label className={`date-placeholder ${deadline ? 'filled' : ''}`}>Deadline</label>
+             <input type="date" placeholder='Deadline' className='date-input'
+             
+               name='deadline' value={deadline} onChange={(e) =>setdeadline(e.target.value)}/>
+               
+           </div>
             <button type='submit' className='postbutton'>Create Job</button>
       </form>
      </div>

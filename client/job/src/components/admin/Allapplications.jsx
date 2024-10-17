@@ -9,7 +9,7 @@ useEffect(() => {
     const fetchApplications = async () => {
       try {
         const response = await api.get('/applicant/admin/getall');
-        setapplication(response.data.application)
+        setapplication(response.data.application.reverse())
       } catch (error) {
         console.error("Error fetching applications:", error);
       }
@@ -28,8 +28,8 @@ useEffect(() => {
       ) : (
         <div className="users-list">
           <span className="users-subtitle">Total applications: {application.length}</span>
-         
-          <table className="users-table">
+         <div className="tablewrapper">
+         <table className="users-table">
             <thead>
               <tr>
                 <th>Applicant Name</th>
@@ -55,6 +55,8 @@ useEffect(() => {
               ))}
             </tbody>
           </table>
+         </div>
+         
         </div>
       )}
     </div>

@@ -10,7 +10,8 @@ jobRoute.put('/updatejob/:id', auth, jobController.updateJob);
 jobRoute.patch('/togglejob/:id',jobController.togglejob);
 jobRoute.delete('/delete/:id', auth, jobController.deleteJob);
 jobRoute.get('/myjobs',auth,jobController.getJobByEmployee);
-jobRoute.patch('/admin/toglejob/:id',jobController.togglejob);
-jobRoute.patch('/admin/disable/:id',jobController.disablejob);
+
+jobRoute.patch('/admin/toggle/:id',jobController.admintogglejob);
 jobRoute.get('/jobcount',jobController.jobcount);
+
 module.exports = jobRoute;

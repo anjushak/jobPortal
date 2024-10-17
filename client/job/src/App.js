@@ -67,6 +67,7 @@ if (user) {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/' element={<><Navbar/><Home /><Footer /></>} />
+        
         <Route path='*' element={<Notfound />} />
       </Routes>
       <Toaster />

@@ -184,7 +184,11 @@ justify-content: center;
   color: #333;
 }
 
+.tablewrapper{
+  overflow-x: auto;
+}
 .applications-table {
+
   width: 100%;
   border-collapse: collapse;
   margin-top: 50px;
@@ -238,6 +242,9 @@ justify-content: center;
 }
 
 @media (max-width: 1024px) {
+  .my-applications{
+    margin-top: 30px;
+  }
   .my-container {
     padding: 15px;
   }
@@ -258,6 +265,7 @@ justify-content: center;
 
   .applications-table {
     margin-top: 30px;
+    overflow-y: scroll;
   }
 
   .applications-table th,
@@ -282,7 +290,7 @@ justify-content: center;
   .view-detail-btn {
     font-size: 13px;
     padding: 8px 12px;
-    width: 120px; 
+    width: 140px; 
   }
 }
 
@@ -302,6 +310,9 @@ justify-content: center;
     margin-bottom: 10px;
   }
 
+  .applications-table {
+    overflow-y: scroll;
+  }
   .applications-table th,
   .applications-table td {
     font-size: 12px;
@@ -310,7 +321,7 @@ justify-content: center;
 
   .view-detail-btn {
     font-size: 12px;
-    width: 80px;
+    width: 140px;
 
   }
 }
@@ -426,7 +437,9 @@ justify-content: center;
  .card{
   margin: 10px 0;
  }
- 
+ .applications-table {
+  overflow-y: scroll;
+ }
 }
 
 @media (max-width: 768px) {

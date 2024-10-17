@@ -3,6 +3,7 @@ import { api } from '../../axios';
 import toast from 'react-hot-toast';
 import "../styles/Admin.css"
 import { MdDeleteForever } from 'react-icons/md';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 const AllJobs = () => {
     const [jobs,setjobs] = useState("")
     useEffect(() => {
@@ -10,8 +11,8 @@ const AllJobs = () => {
           try {
             const res = await api.get('/employee/getjobs'); 
             if (res.data.success) {
-              const activeJobs = res.data.jobs.filter((job) => !job.disabled);
-              setjobs(activeJobs);
+             
+              setjobs(res.data.jobs.reverse());
               console.log(res.data);
              
             } else {
@@ -34,7 +35,26 @@ const AllJobs = () => {
           console.log(err);
           
         })
+
 }
+const toggleJobStatus = async (jobId, currentStatus) => {
+  try {
+    const res = await api.patch(`/employee/admin/toggle/${jobId}`);
+    if (res.status === 200) {
+      toast.success(res.data.message);
+      setjobs((prevJobs) =>
+        prevJobs.map((job) =>
+          job._id === jobId ? { ...job, disabled: !currentStatus } : job
+        )
+      );
+    } else {
+      toast.error('Failed to update job status.');
+    }
+  } catch (err) {
+    toast.error('An error occurred while updating job status.');
+    console.error('Error updating job status:', err);
+  }
+};
   return (
     <div>
       <div className='all-users'>
@@ -45,8 +65,8 @@ const AllJobs = () => {
       ) : (
         <div className="users-list">
           <span className="users-subtitle">Total Jobs:  {jobs.length}</span>
-         
-          <table className="users-table">
+         <div className="tablewrapper">
+         <table className="users-table">
             <thead>
               <tr>
                 <th>logo</th>
@@ -67,11 +87,19 @@ const AllJobs = () => {
                   <td>{job.category}</td>
                   <td>{job.city}</td>
                   <td>{job.salary}</td>
-                  <td><MdDeleteForever   onClick={()=>remove(job._id)}/></td>
+
+                  <td> {job.disabled ? (
+                <FaEyeSlash onClick={() => toggleJobStatus(job._id, job.disabled)}  style={{fontSize:"19px",marginLeft:"10px"}}/>
+                    
+                  ) : (
+                    <FaEye onClick={() => toggleJobStatus(job._id, job.disabled)} style={{fontSize:"19px",marginLeft:"10px"}}/>
+                  )}</td>
                 </tr>
               ))}
             </tbody>
           </table>
+         </div>
+        
         </div>
       )}
     </div>

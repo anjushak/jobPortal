@@ -22,12 +22,12 @@ const getAllJobs=async (req,res)=>{
 
 const postJob = async (req, res) => {
     try {
-      const { title, description, category, country, city, location, salary, companylogo,companyName} = req.body;
+      const { title, description, category, country, city, location, salary, companylogo,companyName,deadline} = req.body;
   
       console.log("Received job data:", req.body);
   
      
-      if (!title || !description || !category || !country || !city || !location || !salary || !companylogo || !companyName) {
+      if (!title || !description || !category || !country || !city || !location || !salary || !companylogo || !companyName || !deadline) {
         return res.status(400).send("Please provide full job details");
       }
       console.log("Authenticated user:", req.user);
@@ -47,7 +47,8 @@ const postJob = async (req, res) => {
         salary:Number(salary),
         postedBy:req.user._id,
         companylogo,
-        companyName
+        companyName,
+        deadline
         
       };
   
@@ -69,7 +70,7 @@ const postJob = async (req, res) => {
   const updateJob=async (req,res)=>{
     try{
          const {id}=req.params;
-         const body=req.body;
+         
          const job=await jobcollection.findById(id)
          if(!job){
           return res.status(400).send("oops job not found")
@@ -130,7 +131,28 @@ const postJob = async (req, res) => {
       return res.status(400).send({success:false,message:"job not found"})
 
     }
+    if (job.adminDisabled) {
+      return res.status(403).json({ message: 'Cannot enable a job disabled by admin' });
+  }
     job.disabled=!job.disabled;
+    await job.save();
+    return res.status(200).send({success:true,message:`job ${job.disabled ? 'disabled':'enabled'} successfully`})
+    }catch(err){
+      console.log(err.message)
+      return res.status(500).send("internal server error")
+    }
+  }
+  const admintogglejob=async (req,res)=>{
+    try{
+    const {id}=req.params;
+    const job=await jobcollection.findById(id)
+    if(!job){
+      return res.status(400).send({success:false,message:"job not found"})
+
+    }
+    // job.disabled=!job.disabled;
+    job.adminDisabled = !job.adminDisabled; // Toggle adminDisabled
+        job.disabled = job.adminDisabled;
     await job.save();
     return res.status(200).send({success:true,message:`job ${job.disabled ? 'disabled':'enabled'} successfully`})
     }catch(err){
@@ -157,13 +179,17 @@ const postJob = async (req, res) => {
 
   const jobcount=async (req,res)=>{
     try{
-          const jobscount=await jobcollection.countDocuments();
-          res.json({ count: jobscount });
+      const jobscount = await jobcollection.countDocuments();
+      console.log(`Job count: ${jobscount}`);
+      
+      return res.status(200).json({ count: jobscount });
   
     }catch(err){
       console.log(err.message);
       return res.status(500).send('internal server error')    
     }
   }
+
  
-  module.exports={getAllJobs,postJob,updateJob,deleteJob,singleJob,getJobByEmployee,togglejob,disablejob,jobcount}
+ 
+  module.exports={getAllJobs,postJob,updateJob,deleteJob,singleJob,getJobByEmployee,togglejob,disablejob,jobcount,admintogglejob};

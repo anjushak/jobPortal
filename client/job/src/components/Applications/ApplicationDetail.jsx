@@ -99,9 +99,9 @@ const ApplicationDetail = () => {
 </div>
 
 <div className="buttons">
-  <button className="button button-edit" onClick={() =>{toast.success('Application Accepted'); handleAccept()} } disabled={action}>Accept</button>
-  <button className="button button-delete" onClick={() => {toast.error('Application Rejected'); handleReject()}} disabled={action}>Reject</button>
-  <button className="button button-back" onClick={() =>{toast('Back button clicked!');  navigate('/employee/applications');} }>Back</button>
+  <button className="button button-edit" onClick={() =>{handleAccept()} } disabled={action}>Accept</button>
+  <button className="button button-delete" onClick={() => {handleReject()}} disabled={action}>Reject</button>
+  <button className="button button-back" onClick={() =>{navigate('/employee/applications');} }>Back</button>
 </div>
 </div>
   )

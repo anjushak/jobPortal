@@ -35,7 +35,7 @@ const Navbar = () => {
     }
   };
   return (
-    <div className=  'navbar-show'>
+    <div>
   
 
       <div className='navcontainer'>
@@ -45,27 +45,27 @@ const Navbar = () => {
         <ul className={!show ?"menu":"show-menu menu"}>
              <li>
               <Link to={'/'} onClick={()=>setshow(false)}>
-              HOME
+              Home
               </Link>
              </li>
              <li>
              <Link to={'/aboutus'} onClick={()=>setshow(false)}>
-              ABOUT US
+              About Us
               </Link>
              </li>
              <li>
               <Link to={'/job/getall'} onClick={()=>setshow(false)}>
-              ALL JOBS
+              All Jobs
               </Link>
              </li>
              <li>
               <Link to={'/applications/me'} onClick={()=>setshow(false)}>
-              MY APPLICATIONS
+              My Applications
               </Link>
              </li>
             
 
-             <li>{!isAuthorized? <Link to={"/login"} >SIGN UP/SIGN IN</Link>:<Link to={`/profile/${user?._id}`} onClick={()=>setshow(false)}>
+             <li>{!isAuthorized? <Link to={"/login"} >SignUp/SignIn</Link>:<Link to={`/profile/${user?._id}`} onClick={()=>setshow(false)}>
               
              <CiUser style={{fontSize:"30px",fontWeight:"200px"}}/>
              </Link>}
@@ -73,7 +73,7 @@ const Navbar = () => {
               </li>   
               
          
-           <button onClick={logout} style={{background:""}}><LuLogOut /></button>
+           <button onClick={logout} style={{background:"lightblue"}}><LuLogOut /></button>
 
              
         </ul>

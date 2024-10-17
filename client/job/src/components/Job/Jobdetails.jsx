@@ -62,7 +62,8 @@ const Jobdetails = () => {
         <div className='header-info'>
           <h2>{job.title}</h2>
           <p>{job.companyName}</p>
-          <p>{job.category} | Posted on: {new Date(job.jobPostedOn).toLocaleDateString()}</p>
+          <p>{job.category} | <span style={{color:"black"}}>Posted on:</span> {new Date(job.jobPostedOn).toLocaleDateString()} |<span style={{color:"red"}}>Deadline: </span> {new Date(job.deadline).toLocaleDateString()}</p>
+          
         </div>
       </div>
       <div className='detail-content'>

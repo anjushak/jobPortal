@@ -63,7 +63,7 @@ const login=async (req,res)=>{
   
     const token=jwt.sign({sub:newuser},process.env.JWT_KEY,{expiresIn:"7d"})
     
-    return res.status(200).send({token:token,newuser})
+    return res.status(200).send({message:"logged in sucessfully",token:token,newuser})
  }
     catch(err){
         console.log(err.message);
@@ -71,6 +71,23 @@ const login=async (req,res)=>{
     }
 }
 
+
+const updateprofile=async (req,res)=>{
+  try{
+      const {id}=req.params;
+
+      const user=await usercollection.findById(id);
+      if(!user){
+        return res.status(400).send({message:"user not found"})
+      }
+      const updateuser=await usercollection.findByIdAndUpdate({_id:id},req.body,{new:true})
+      return res.status(200).send({message:"userprofile updated",updateuser});
+  }catch(err){
+    console.log(err.message);
+    return res.status(500).send({message:"internal server error"})
+    
+  }
+}
 const view=async (req,res)=>{
     try{
         const id=req.params.id;
@@ -193,6 +210,7 @@ const unblockuser=async (req,res)=>{
        if(!user){
         return res.status(404).send({success:false,message:"user not found"})
        }
+        return res.status(200).send({message:"success"})
   }catch(err){
     console.log(err.message);
     return res.status(500).send('internal server error')
@@ -233,4 +251,4 @@ const jobseekercount=async (req,res)=>{
     
   }
 }
-module.exports={register,login,view,saveJob,viewSavejob,unSavejob,getallusers,blockuser,unblockuser,usercount,employeecount,jobseekercount}
+module.exports={register,login,view,saveJob,viewSavejob,unSavejob,getallusers,blockuser,unblockuser,usercount,employeecount,jobseekercount,updateprofile};

@@ -31,8 +31,10 @@ const auth = async (req, res, next) => {
         req.user = user;
         next();
     } catch (err) {
-        console.error(err);
-        res.status(500).send({ message: 'Internal server error' });
+        if (err.name === 'TokenExpiredError') {
+            return res.status(401).json({ message: 'Token has expired, please log in again' });
+        }
+        return res.status(401).json({ message: 'Token is not valid' });
     }
 };
 

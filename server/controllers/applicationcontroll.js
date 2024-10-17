@@ -120,7 +120,7 @@ const getJobApplication=async (req,res)=>{
   }
 
 }
-getAllapplication=async (req,res)=>{
+const getAllapplication=async (req,res)=>{
   try{
        const application=await Application.find();
        return res.status(200).send({success:true,application})
@@ -200,6 +200,17 @@ const rejectapplication=async (req,res)=>{
      
   }
 }
+const applicationcount=async (req,res)=>{
+  try{
+      const applcount=await Application.countDocuments();
+      res.json({ count: applcount });
+  
+   }
+  catch(err){
+    console.log(err.message);
+    return res.status(500).send("internal server error");
+  }
+}
 module.exports={
   postapplication,
   checkApplication
@@ -209,5 +220,6 @@ module.exports={
   getsingleApplication,
   acceptapplication,
   rejectapplication,
-  getAllapplication,
+  applicationcount,
+  getAllapplication
 };

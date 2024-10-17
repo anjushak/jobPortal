@@ -40,13 +40,13 @@ function Employenav() {
         <ul className={!show ?"menu":"show-menu menu"}>
              <li>
               <Link to={'/'} onClick={()=>setshow(false)}>
-              HOME
+              Home
               </Link>
              </li>
              
              <li>
               <Link to={`/employee/applications`} onClick={()=>setshow(false)}>
-               VIEW APPLICATIONS
+               View Applications
              
               </Link>
              </li>
@@ -55,21 +55,21 @@ function Employenav() {
               
                 <li>
                 <Link to={'/job/post'} onClick={()=>setshow(false)}>
-                POST NEW JOB
+                Post Jobs
                 </Link>
 
                 </li>
                 <li>
                <Link to={`/job/getall`} onClick={()=>setshow(false)}>
-                 VIEW ALL JOBS
+                 All Jobs
                 </Link>
                </li>
                <li>
                <Link to={`/job/me`} onClick={()=>setshow(false)}>
-                 VIEW JOBS
+                 View MyJobs
                 </Link>
                </li>
-               <li>{!isAuthorized? <Link to={"/login"} >SIGN UP/SIGN IN</Link>:<Link to={`/profile/${user?._id}`} onClick={()=>setshow(false)}>
+               <li>{!isAuthorized? <Link to={"/login"} >SignUp/SignIn</Link>:<Link to={`/profile/${user?._id}`} onClick={()=>setshow(false)}>
               
               <CiUser  style={{fontSize:"30px"}}/>
               </Link>}

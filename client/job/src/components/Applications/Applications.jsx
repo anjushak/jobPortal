@@ -4,10 +4,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { api } from '../../axios';
 import { FiDownload, FiEye } from 'react-icons/fi';
+import { FcViewDetails } from 'react-icons/fc';
 
 const Applications = () => {
   const {user}=useContext(MyContext);
   const [applications, setapplications] = useState([]);
+  const [isdelete,setisdelete] = useState(null);
   const navigate=useNavigate();
   const { isAuthorized } = useContext(MyContext);
 
@@ -47,6 +49,7 @@ const Applications = () => {
         <div className="myappl-list">
           <span className="summary-title">Total Applications:</span>
           <span className="summary-count">{applications.length}</span>
+          <div className='tablewrapper'>
           <table className="applications-table">
             <thead>
               <tr>
@@ -66,7 +69,7 @@ const Applications = () => {
               {applications.map((application) => (
                 <tr key={application._id}>
                   <td>{new Date(application.appliedOn).toLocaleDateString()}</td>
-                  <td>{application.jobId.title}</td>
+                  <td>{application.jobId.title} <Link to={`/job/${application.jobId._id}`}><FcViewDetails /></Link></td>
                   <td>{application.applicantId.user.name}</td>
                   <td>{application.applicantId.user.email}</td>
                   <td>{application.phone}</td>
@@ -79,6 +82,8 @@ const Applications = () => {
               ))}
             </tbody>
           </table>
+          </div>
+         
         </div>
       )}
     </div>

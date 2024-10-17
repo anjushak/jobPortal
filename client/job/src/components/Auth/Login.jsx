@@ -29,8 +29,8 @@ const Login = () => {
           const data=res.data;
           setToken(data.token)
           toast.success(data.message);
-          setAuthorized(true);
-          setUser();         
+          setAuthorized(new Date());
+          setUser(data.newuser);         
            navigate('/');
       
 
@@ -54,7 +54,7 @@ const Login = () => {
       </div>
       <div className='login-form-container'>
         <div className='login-header'>
-          <h2>Welcome back!</h2>
+          <h2>Welcome To HirePulse! </h2>
           <p>Please enter your details</p>
         </div>
         <form onChange={handleUpdate} onSubmit={loginSubmit}>
@@ -87,11 +87,8 @@ const Login = () => {
             </div>
           </div>
           <div className="form-actions">
-            <label className='remember-me'>
-              <input type="checkbox" />
-              Remember for 30 days
-            </label>
-            <Link to="/forgot-password" className='forgot-password'>Forgot password?</Link>
+           
+            
           </div>
           <button type='submit' className='login-button'>Log In</button>
          

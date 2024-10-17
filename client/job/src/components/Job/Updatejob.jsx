@@ -6,13 +6,18 @@ import { api } from '../../axios'
 const Updatejob = () => {
     const navigate=useNavigate()
     const {id}=useParams();
-    const [jobData, setJobdata] = useState({title:"",description:"",category:"",country:"",city:"",location:"",companylogo:"",salary:"",companyName:""})
+    const [jobData, setJobdata] = useState({deadline:"",title:"",description:"",category:"",country:"",city:"",location:"",companylogo:"",salary:"",companyName:""})
 
   useEffect(() => {
     const fetchJobs = async () => {
        
         const res = await api.get(`/employee/singlejob/${id}`);
-        setJobdata(res.data.singlejob);
+        const fetchedJobs=res.data.singlejob;
+       
+        if (fetchedJobs.deadline) {
+          fetchedJobs.deadline = new Date(fetchedJobs.deadline).toISOString().split("T")[0];
+      }
+      setJobdata(fetchedJobs)
     };
 
     fetchJobs();
@@ -93,6 +98,13 @@ const Updatejob = () => {
               <input type="number" placeholder='salary' name='salary' value={jobData.salary} />
             </div>
             <textarea name="description" id="" rows={10} placeholder='Job Description' value={jobData.description}></textarea>
+            <div className="postform">
+            <label className="date-placeholder">Deadline</label>
+             <input type="date" placeholder='Deadline' className='date-input'
+             
+               name='deadline' value={jobData.deadline} onChange={editJob}/>
+               
+           </div>
             <button type='submit' className='postbutton'>Update Job</button>
       </form>
      </div>

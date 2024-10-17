@@ -11,8 +11,8 @@
 
 .login-split {
   display: flex;
-  width: 80%;
-  max-width: 1500px;
+  width: 70%;
+  max-width: 1200px;
   background-color: #fff;
   
   border-radius: 12px;
@@ -29,7 +29,7 @@
 }
 
 .login-image {
-  max-width: 60%;
+  max-width: 80%;
   height: auto;
 }
 
@@ -139,6 +139,7 @@
 .login-button {
   background-color: #000;
   color: #fff;
+  
 }
 
 .google-login-button {
@@ -179,20 +180,70 @@
 .register-link:hover {
   text-decoration: underline;
 }
-
-
-@media (max-width: 768px) {
+@media (min-width: 1025px) {
   .login-split {
-    flex-direction: column;
-    width: 90%;
+    max-width: 1800px;
+    padding: 20px;
+  }
+
+  .login-form-container {
+    padding: 80px;
+    max-width: 700px;
+  }
+
+  .login-header h2 {
+    font-size: 25px;
+  }
+
+  .login-header p {
+    font-size: 18px;
+  }
+
+  .login-button, .google-login-button {
+    font-size: 18px;
+    padding: 16px;
+  }
+
+  .register-text {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .login-split {
+    width: 100%;
+    padding: 150px;
+    max-width: 1200px;
   }
 
   .login-image-container {
     display: none;
+    max-width: 50%;
   }
 
   .login-form-container {
-    padding: 40px 20px;
+    padding: 50px 20px;
+    max-width: 80%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-page{
+    width: 100%;
+  }
+  .login-split {
+    max-width: 1000px;
+  }
+
+  .login-image-container {
+    display: none;
+    width: 100%;
+  }
+
+  .login-form-container {
+    padding: 0px 0px;
+    max-width: 100%;
   }
 
   .login-header h2 {

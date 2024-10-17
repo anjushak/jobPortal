@@ -1,21 +1,22 @@
 
 .jobspage {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Creates responsive grid */
+  grid-gap: 20px; 
   justify-content: center;
   padding: 20px;
-  
+  width: 100%;
   height: 100%;
-  margin-top: 60px;
+  margin-top: 5px;
 
 }
 
 .jobscontainer {
   margin-top: 10px;
   width: 100%;
-  background-color: #fff;
+ 
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .jobscontainer h1 {
@@ -32,10 +33,11 @@
 }
 
 .jobsbanner {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Creates responsive grid for job cards */
+  grid-gap: 20px; 
   margin-top: 50px;
+  
 }
 
 .jobsmain {
@@ -101,6 +103,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  outline: none;
 }
 
 .search-bar input {
@@ -108,7 +111,9 @@
   border-radius: 4px;
   border: 1px solid #ccc;
   flex: 1;
+  outline: none;
 }
+
 
 .search-bar .search-icon {
   position: absolute;
@@ -148,6 +153,45 @@
   font-size: 20px; 
 }
 
+.filter-container{
+  position: relative;
+  margin-bottom: 20px;
+}
+.filter-button{
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.filters {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.filters select {
+  appearance: none; 
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  background-repeat: no-repeat;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23999" d="M2 0L0 2h4z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
+  color: #333; 
+  -moz-appearance: none;
+  padding: 9px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  flex: 1;
+  min-width: 10px; 
+  height: 35px;
+  font-size: 12px;
+  font-weight: bold;
+  width: 10px;
+}
 .jobdetails {
   text-align: right;
 }
@@ -180,114 +224,139 @@ body {
   font-family: 'Roboto', sans-serif;
 
 }
+.filters select option {
+  padding: 10px; 
+  color: #da7b7b;
+  background-color: #fff;
+  cursor: pointer;
+}
 
-
- @media (max-width: 1024px) {
-  .jobspage {
-    padding: 10px;
-    margin-top: 50px;
-    width: 100%;
-    height: auto;
-  }
-
- 
+@media (max-width: 1024px) {
   .jobscontainer {
     padding: 15px;
+
   }
   .jobsbanner{
-    justify-content: space-around;
-   min-width:  100%;
+    justify-content: center;
+    /* grid-template-columns: 1fr; */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  }
+
+  .jobscontainer h1 {
+    font-size: 1.125rem; 
   }
 
   .jobsmain {
-    min-width: 100%;
-    flex: 1 1 48%;
+    max-width: 300px; 
+    
+    height: 310px;
+    
+  }
+ .filters{
+   flex-direction: column;
+   align-items: stretch;
+ }
+
+  .jobdetails{
+   height: 80px;
+  }
+  .search-bar {
+    max-width: 80%; 
+    outline: none;
+  }
+  .search-bar input{
+    outline: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .jobsbanner {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    align-items: center; 
+    margin-top: 20px;
   }
 
+  .jobsmain {
+    width: 100%; 
+    /* margin-bottom: 20px;  */
+    /* margin-top: 12px; */
+    height: auto;
+    /* max-height: 330px; */
+    max-height: 100%;
+  }
+
+  .search-bar {
+    margin-bottom: 20px; 
+    outline: none;
+  }
+  .search-bar input{
+    outline: none;
+  }
+  .viewjob {
+    font-size: 12px; 
+    margin-bottom: 30px;
+  }
+  .filters{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .filter-container{
+    width: 50px;
+
+  }
+  .filters select{
+    font-size: 14px;
+    width: 50%;
+  }
+  .filter-button{
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .jobsbanner {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 10px;
+  }
+  .jobscontainer h1 {
+    font-size: 1rem; 
+  }
+   .jobsmain{
+      width: 100%; 
+
+
+  }  
   .jobinfo h2 {
-    font-size: 18px;
+    font-size: 1rem; 
+  }
+
+  .jobinfo .salary,
+  .jobinfo .deadline {
+    font-size: 0.875rem; 
   }
 
   .viewjob {
-    padding: 8px 16px;
-    font-size: 13px;
+    margin-bottom: 40px;
+    padding: 5px 8px; 
   }
-  .jobscontainer h1 {
-    font-size: 18px;
-    
+  .search-bar{
+    outline: none;
+  }
+  .search-bar input{
+    outline: none;
   }
 }
 
 
-@media (max-width: 768px) {
-  .jobspage {
-    padding: 10px;
-    margin-top: 50px;
-    min-width: 100%;
-  
-  }
-
-  .jobscontainer h1 {
-    font-size: 16px;
-  }
 
 
-  .jobscontainer h1 {
-    font-size: 18px;
-  }
 
-  .jobsmain {
-    min-width: 100%;
-    margin-bottom: 20px; 
-    height: auto;
-  
-  }
 
-  .jobinfo h2 {
-    font-size: 17px;
-  }
 
-  .viewjob {
-    padding: 8px 14px;
-    font-size: 12px;
-  }
-}  
 
-@media (max-width: 480px) {
-  .jobspage {
-    padding: 10px;
-    margin-top: 50px;
-    min-width: 100%;
-    height: 50px;
-  }
-
-  .jobscontainer h1 {
-    font-size: 16px;
-  }
-
-  .jobheader {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .joblogo img {
-    width: 50px;
-    height: 50px;
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-
-  .jobinfo h2 {
-    font-size: 16px;
-    
-  }
-
-  .viewjob {
-    padding: 6px 12px;
-    font-size: 11px;
-  }
-} 
-
+/* job details css */
 
 .job-details {
   padding: 20px;
@@ -422,6 +491,12 @@ body {
   .header-info p {
     font-size: 13px;
   }
+  .search-bar{
+    outline: none;
+  }
+  .search-bar input{
+    outline: none;
+  }
 }
 @media (max-width: 768px) {
   .job-details {
@@ -454,12 +529,18 @@ body {
     text-align: left;
     margin-top: 10px;
   }
+  .search-bar{
+    outline: none;
+  }
+  .search-bar input{
+    outline: none;
+  }
 }
 
 @media (max-width: 400px) {
   .job-details {
     padding: 10px;
-    margin-top: 70px;
+    margin-top: 10px;
   }
 
   .detail-header {
@@ -491,4 +572,8 @@ body {
     width: 80%;
     height: 40px;
   }
+}
+
+*{
+  outline: none;
 }

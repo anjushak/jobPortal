@@ -17,7 +17,7 @@ const Viewusers = () => {
         if (Array.isArray(response.data.users)) {
           
           const filteredUsers = response.data.users.filter(u => u.role !== 'Admin');
-          setusers(filteredUsers);
+          setusers(filteredUsers.reverse());
         }
 
       } catch (error) {
@@ -32,7 +32,10 @@ const Viewusers = () => {
   const handleBlock = async (userId) => {
     try {
       await api.patch(`/job/admin/block/${userId}`);
+      console.log(userId, "hi");
       setusers(users.map(u => u._id === userId ? { ...u, Blocked: true } : u));
+      toast.success("User has been blocked successfully.");
+      
     } catch (error) {
       console.log(error);
       toast.error(error.message);
@@ -43,13 +46,15 @@ const Viewusers = () => {
   const handleUnblock = async (userId) => {
     try {
       await api.patch(`/job/admin/unblock/${userId}`);
+      console.log(userId, "hi");
       setusers(users.map(u => u._id === userId ? { ...u, Blocked: false } : u));
+      toast.success("User has been unblocked successfully.");
     } catch(err){
       console.log(err);
       
     }
   };
-
+ 
 
   if (!isAuthorized || !user || user.role !== 'Admin') {
     return <div>Access Denied</div>;
@@ -66,8 +71,8 @@ const Viewusers = () => {
       ) : (
         <div className="users-list">
           <span className="users-subtitle">Total users:  {users.length}</span>
-         
-          <table className="users-table">
+         <div className="tablewrapper">
+         <table className="users-table">
             <thead>
               <tr>
                 <th>Name</th>
@@ -85,7 +90,7 @@ const Viewusers = () => {
                   <td>{user.email}</td>
                   <td>{user.phoneno}</td>
                   <td>{user.role}</td>
-                  <td>{user.blocked ? 'Yes' : 'No'}</td>
+                  <td>{user.Blocked ? 'Yes' : 'No'}</td>
                 
                   <td>
                     {
@@ -102,6 +107,8 @@ const Viewusers = () => {
               ))}
             </tbody>
           </table>
+          </div>
+          
         </div>
       )}
     </div>

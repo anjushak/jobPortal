@@ -12,18 +12,53 @@ const userSchema=new Schema({
     },
     phoneno:{
         type:Number,
-        require:[true,'phoneno is require']
+        require:[true,'phoneno is require'],
+        validate: {
+            validator: function (v) {
+              return /^\+?[1-9]\d{1,14}$/.test(v); // Regex for international phone number format
+            },
+            message: props => `${props.value} is not a valid phone number!`,
+          },
     },
     email:{
         type:String,
         required:[true,'Email is Require'],
         unique:true,
-        validate:validator.isEmail
+        validate: {
+            validator: validator.isEmail,
+            message: props => `${props.value} is not a valid email!`,
+          },
     },
     password:{
         type:String,
         required:[true,'Password is Require'],
-        select:false
+        select:false,
+        validate: [{
+            validator: function (v) {
+              return v.length >= 8; // Password must be at least 6 characters
+            },
+            message: 'Password must be at least 6 characters long!',
+
+          },
+        {
+            validator: function (v) {
+                return /[A-Z]/.test(v); // At least one uppercase letter
+              },
+              message: 'Password must contain at least one uppercase letter!',
+        },
+    {
+        validator: function (v) {
+            return /[a-z]/.test(v); // At least one lowercase letter
+          },
+          message: 'Password must contain at least one lowercase letter!',
+
+    },
+   {
+    validator: function (v) {
+        return /\d/.test(v); // At least one digit
+      },
+      message: 'Password must contain at least one digit!',
+    }]
     },
      role: {
         type: String,
