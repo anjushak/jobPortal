@@ -1,6 +1,6 @@
-![1]# HirePulse Job Portal  🧑‍💼💼
+# 🌐 Job Portal Application 🧑‍💼💼
 
-![Job Portal Logo](C:\Users\hp\Documents\WEB DEV\JOB PORTAL\client\job\src\components\assets\1.jpg) <!-- Add your logo image link here -->
+ <!-- Add your logo image link here -->
 
 ## Overview 🌟
 The **HirePulse Job Portal Application** is a robust web platform designed to bridge the gap between job seekers and employers. Built on the MERN stack (MongoDB, Express, React, Node.js), this application provides an intuitive user experience for both job seekers and employers, facilitating seamless job postings, applications, and profile management.
